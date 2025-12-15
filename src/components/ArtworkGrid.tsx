@@ -1,4 +1,3 @@
-import React from "react";
 import { ArtworkCard } from "./ArtworkCard";
 import { useOutletContext } from "react-router";
 import type { Artwork } from "../modules/types";

@@ -1,4 +1,3 @@
-import React from "react";
 import { ArtworkGrid } from "../components/ArtworkGrid";
 
 export const Home = () => {
