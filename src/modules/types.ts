@@ -17,3 +17,5 @@ export const ArtworksPageScheme = z.object({
 // export type ArtworkConfig = z.infer<typeof ConfigScheme>;
 export type Artwork = z.infer<typeof ArtworkScheme>;
 export type ArtworksPage = z.infer<typeof ArtworksPageScheme>;
+
+export type Note = { id: number; text: string };

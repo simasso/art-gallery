@@ -1,10 +1,17 @@
 import { createContext, use, useState, type ReactNode } from "react";
-import type { Artwork } from "../modules/types";
-import { loadFavourites, writeFavourites } from "../modules/storage";
+import type { Artwork, Note } from "../modules/types";
+import {
+  loadFavourites,
+  loadNotes,
+  writeFavourites,
+  writeNotes,
+} from "../modules/storage";
 
 const FavouritesContext = createContext<
   | {
       favourites: Artwork[];
+      notes: Note[];
+      addNote: (id: number, text: string) => void;
       addFavourite: (favourite: Artwork) => void;
       deleteFavourite: (id: number) => void;
       isFavourite: (id: number) => boolean;
@@ -19,6 +26,7 @@ export function FavouritesContextProvider({
   children: ReactNode;
 }) {
   const [favourites, setFavourites] = useState<Artwork[]>(loadFavourites());
+  const [notes, setNotes] = useState<Note[]>(loadNotes());
   const addFavourite = (favourite: Artwork) => {
     setFavourites((prev) => {
       prev.push(favourite);
@@ -45,10 +53,18 @@ export function FavouritesContextProvider({
   const isFavourite = (id: number): boolean => {
     return favourites.some((favourite) => favourite.id === id);
   };
-
+  const addNote = (id: number, text: string) => {
+    setNotes((prev) => {
+      prev.push({ id, text });
+      writeNotes(prev);
+      return prev;
+    });
+  };
   return (
     <FavouritesContext
       value={{
+        notes,
+        addNote,
         favourites,
         addFavourite,
         deleteFavourite,
