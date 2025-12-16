@@ -1,4 +1,5 @@
 import type { ChangeEventHandler } from "react";
+import { NavLink } from "react-router";
 
 export const Navbar = ({
   searchString,
@@ -14,7 +15,9 @@ export const Navbar = ({
     <div>
       <div className="navbar bg-base-100 shadow-sm">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">Art Gallery</a>
+          <NavLink className="btn btn-ghost text-xl" to="/">
+            Art Gallery
+          </NavLink>
         </div>
         <div className="flex gap-2">
           <input
@@ -24,6 +27,9 @@ export const Navbar = ({
             placeholder="Search"
             className="input input-bordered w-24 md:w-auto"
           />
+          <NavLink className={"btn"} to="/favourites">
+            Favourites
+          </NavLink>
         </div>
       </div>
     </div>
