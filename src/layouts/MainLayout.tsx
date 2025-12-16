@@ -8,9 +8,10 @@ export default function MainLayout() {
   const [artworks, setArtworks] = useState<Artwork[]>([]);
   const [error, setError] = useState<Error | null>();
   const [iiifUrl, setIiifUrl] = useState<string | null>(null);
+  const [searchString, setSearchString] = useState("");
 
   useEffect(() => {
-    fetchArtworksPage()
+    fetchArtworksPage(searchString)
       .then((page: ArtworksPage) => {
         setArtworks(page.data);
         setIiifUrl(page.config.iiif_url);
@@ -22,11 +23,11 @@ export default function MainLayout() {
           console.log("Something went wrong");
         }
       });
-  }, []);
+  }, [searchString]);
 
   return (
     <div className="body">
-      <Navbar />
+      <Navbar searchString={searchString} setSearchString={setSearchString} />
       {/* Outlet rendert die Child-Routes an dieser Stelle */}
       {/* context prop übergibt Daten an alle Child-Components */}
       {error && <p>Error: {error.message}</p>}

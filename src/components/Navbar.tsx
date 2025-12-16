@@ -1,29 +1,29 @@
-export const Navbar = () => {
+import type { ChangeEventHandler } from "react";
+
+export const Navbar = ({
+  searchString,
+  setSearchString,
+}: {
+  searchString: string;
+  setSearchString: (arg0: string) => void;
+}) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (ev) => {
+    setSearchString(ev.target.value);
+  };
   return (
     <div>
       <div className="navbar bg-base-100 shadow-sm">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="btn btn-ghost text-xl">Art Gallery</a>
         </div>
-        <div className="flex-none">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <a>Link</a>
-            </li>
-            <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="bg-base-100 rounded-t-none p-2">
-                  <li>
-                    <a>Link 1</a>
-                  </li>
-                  <li>
-                    <a>Link 2</a>
-                  </li>
-                </ul>
-              </details>
-            </li>
-          </ul>
+        <div className="flex gap-2">
+          <input
+            type="search"
+            value={searchString}
+            onChange={handleChange}
+            placeholder="Search"
+            className="input input-bordered w-24 md:w-auto"
+          />
         </div>
       </div>
     </div>
