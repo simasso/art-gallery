@@ -25,12 +25,11 @@ export const ArtworkCard = ({ artwork }: { artwork: Artwork }) => {
     const dialog = document?.getElementById(
       "notes_dialog"
     ) as HTMLDialogElement;
-    console.log("showNotes: ", dialog);
     dialog?.showModal();
   };
   return (
     <div className="card bg-base-100 w-96 shadow-sm mt-10">
-      <Notes />
+      <Notes id={id} />
       <figure>
         <img src={image} alt={title} />
       </figure>

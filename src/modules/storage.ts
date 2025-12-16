@@ -18,5 +18,6 @@ export function writeFavourites(favourites: Artwork[]) {
 }
 
 export function writeNotes(notes: Note[]) {
+  console.log("notes:", notes);
   localStorage.setItem(KEY_NOTES, JSON.stringify(notes));
 }
